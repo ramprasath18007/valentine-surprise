@@ -1,24 +1,25 @@
 const noBtn = document.getElementById("noBtn");
 const yesBtn = document.getElementById("yesBtn");
 const music = document.getElementById("bgMusic");
+const buttonArea = document.getElementById("buttonArea");
+
 let noClickCount = 0;
 
-// Start music on first click (mobile safe)
+/* Start music on first user tap (required for mobile) */
 document.addEventListener("click", function () {
     music.play();
 }, { once: true });
 
-// Move No button
-function moveButton() {
+/* Move NO button safely inside box */
+function moveNoButton() {
 
-    if (noClickCount >= 2) {
+    if (noClickCount >= 4) {
         showWarning();
         return;
     }
 
-    const container = document.querySelector(".buttons");
-    const maxX = container.clientWidth - noBtn.offsetWidth;
-    const maxY = container.clientHeight - noBtn.offsetHeight;
+    const maxX = buttonArea.clientWidth - noBtn.offsetWidth;
+    const maxY = buttonArea.clientHeight - noBtn.offsetHeight;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -29,42 +30,27 @@ function moveButton() {
     noClickCount++;
 }
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
+/* Works for both mobile & desktop */
+noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("mouseover", moveNoButton);
 
-// YES BUTTON
+/* YES BUTTON */
 yesBtn.addEventListener("click", function () {
     document.body.innerHTML = `
         <div class="result">
             <h1>It’s Just For Fun 😜</h1>
-            <h2>Get Well Soon Pooja💖</h2>
-            <img src="assets/getwell.gif">
+            <h2>Get Well Soon 💖</h2>
+            <img src="./assets/getwell.jpg">
         </div>
     `;
 });
 
-// WARNING PAGE AFTER 4 NO CLICKS
+/* After 4 NO attempts */
 function showWarning() {
     document.body.innerHTML = `
         <div class="result">
-            <h1>Don’t Mess With Me 😼🔫</h1>
-            <img src="assets/cat.gif">
+            <h1>Don’t Mess With Me 😼</h1>
+            <img src="./assets/cat.jpg">
         </div>
     `;
 }
-
-// Floating hearts generator
-function createHeart() {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.innerHTML = "💖";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
-    document.body.appendChild(heart);
-
-    setTimeout(() => {
-        heart.remove();
-    }, 6000);
-}
-
-setInterval(createHeart, 500);
