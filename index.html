@@ -2,27 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Valentine Surprise 💖</title>
+    <title>Will You Be My Valentine?</title>
+
+    <!-- IMPORTANT FOR MOBILE -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Cute Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <audio id="bgMusic" loop>
-        <source src="assets/mario.mp3" type="audio/mpeg">
+    <!-- Background Music -->
+    <audio id="bgMusic" autoplay loop>
+        <source src="mario.mp3" type="audio/mpeg">
     </audio>
 
-    <div class="wrapper">
-        <div class="card" id="card">
-            <h1>Will You Be My Valentine? 💕</h1>
+    <!-- Floating Hearts Container -->
+    <div id="hearts-container"></div>
 
-            <div class="button-area" id="buttonArea">
-                <button id="yesBtn">Yes 💖</button>
-                <button id="noBtn">No 😏</button>
-            </div>
+    <div class="container">
+        <h1>Will You Be My Valentine? 💖</h1>
+
+        <div class="buttons">
+            <button id="yesBtn">Yes 💕</button>
+            <button id="noBtn">No 😏</button>
         </div>
     </div>
 
-    <script src="js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
