@@ -1,17 +1,25 @@
 const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
+const buttonArea = document.getElementById("buttonArea");
+
 let noClickCount = 0;
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
+/* Start music on first tap (mobile required) */
+document.addEventListener("click", function () {
+    music.play();
+}, { once: true });
 
-function moveButton() {
-    if (noClickCount >= 3) return;
+/* Move NO button safely inside box */
+function moveNoButton() {
 
-    const container = document.querySelector(".buttons");
-    const containerRect = container.getBoundingClientRect();
+    if (noClickCount >= 3) {
+        showWarning();
+        return;
+    }
 
-    const maxX = containerRect.width - noBtn.offsetWidth;
-    const maxY = containerRect.height - noBtn.offsetHeight;
+    const maxX = buttonArea.clientWidth - noBtn.offsetWidth;
+    const maxY = buttonArea.clientHeight - noBtn.offsetHeight;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -20,8 +28,29 @@ function moveButton() {
     noBtn.style.top = randomY + "px";
 
     noClickCount++;
+}
 
-    if (noClickCount >= 4) {
-        window.location.href = "warning.html";
-    }
+/* Works for mobile + desktop */
+noBtn.addEventListener("touchstart", moveNoButton);
+noBtn.addEventListener("mouseover", moveNoButton);
+
+/* YES button */
+yesBtn.addEventListener("click", function () {
+    document.body.innerHTML = `
+        <div class="result">
+            <h1>It’s Just For Fun 😜</h1>
+            <h2>Get Well Soon 💖</h2>
+            <img src="assets/getwell.jpg">
+        </div>
+    `;
+});
+
+/* After 4 NO attempts */
+function showWarning() {
+    document.body.innerHTML = `
+        <div class="result">
+            <h1>Don’t Mess With Me 😼</h1>
+            <img src="assets/cat.jpg">
+        </div>
+    `;
 }
