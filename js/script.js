@@ -40,7 +40,7 @@ yesBtn.addEventListener("click", function () {
         <div class="result">
             <h1>It’s Just For Fun 😜</h1>
             <h2>Get Well Soon 💖</h2>
-            <img src="assets/getwell.jpg">
+            <img src="assets/getwell.gif">
         </div>
     `;
 });
@@ -50,7 +50,7 @@ function showWarning() {
     document.body.innerHTML = `
         <div class="result">
             <h1>Don’t Mess With Me 😼</h1>
-            <img src="assets/cat.jpg">
+            <img src="assets/cat.gif">
         </div>
     `;
 }
