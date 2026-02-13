@@ -1,17 +1,24 @@
 const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const music = document.getElementById("bgMusic");
 let noClickCount = 0;
 
-noBtn.addEventListener("touchstart", moveButton);
-noBtn.addEventListener("mouseover", moveButton);
+// Start music on first click (mobile safe)
+document.addEventListener("click", function () {
+    music.play();
+}, { once: true });
 
+// Move No button
 function moveButton() {
-    if (noClickCount >=2) return;
+
+    if (noClickCount >= 2) {
+        showWarning();
+        return;
+    }
 
     const container = document.querySelector(".buttons");
-    const containerRect = container.getBoundingClientRect();
-
-    const maxX = containerRect.width - noBtn.offsetWidth;
-    const maxY = containerRect.height - noBtn.offsetHeight;
+    const maxX = container.clientWidth - noBtn.offsetWidth;
+    const maxY = container.clientHeight - noBtn.offsetHeight;
 
     const randomX = Math.random() * maxX;
     const randomY = Math.random() * maxY;
@@ -20,8 +27,44 @@ function moveButton() {
     noBtn.style.top = randomY + "px";
 
     noClickCount++;
-
-    if (noClickCount >= 4) {
-        window.location.href = "warning.html";
-    }
 }
+
+noBtn.addEventListener("touchstart", moveButton);
+noBtn.addEventListener("mouseover", moveButton);
+
+// YES BUTTON
+yesBtn.addEventListener("click", function () {
+    document.body.innerHTML = `
+        <div class="result">
+            <h1>It’s Just For Fun 😜</h1>
+            <h2>Get Well Soon 💖</h2>
+            <img src="assets/getwell.jpg">
+        </div>
+    `;
+});
+
+// WARNING PAGE AFTER 4 NO CLICKS
+function showWarning() {
+    document.body.innerHTML = `
+        <div class="result">
+            <h1>Don’t Mess With Me 😼🔫</h1>
+            <img src="assets/cat.jpg">
+        </div>
+    `;
+}
+
+// Floating hearts generator
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
