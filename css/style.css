@@ -5,56 +5,60 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: Arial, sans-serif;
     height: 100vh;
     background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align: center;
     overflow: hidden;
-    position: relative;
 }
 
-.container {
+.wrapper {
+    width: 100%;
+    padding: 20px;
+}
+
+.card {
     background: white;
-    padding: 30px 20px;
+    padding: 25px 20px;
     border-radius: 20px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 380px;
+    margin: auto;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
 
 h1 {
-    font-size: 22px;
-    margin-bottom: 25px;
+    font-size: 20px;
+    margin-bottom: 30px;
     color: #ff4d6d;
 }
 
-.buttons {
+.button-area {
     position: relative;
-    height: 150px;
+    height: 140px;
 }
 
 button {
-    padding: 12px 25px;
+    position: absolute;
+    padding: 12px 22px;
     font-size: 16px;
     border: none;
     border-radius: 30px;
     cursor: pointer;
-    transition: 0.3s ease;
-    position: absolute;
+    transition: 0.3s;
 }
 
 #yesBtn {
-    background-color: #28a745;
+    background: #28a745;
     color: white;
     left: 20%;
     top: 60px;
 }
 
 #noBtn {
-    background-color: #dc3545;
+    background: #dc3545;
     color: white;
     right: 20%;
     top: 60px;
@@ -64,33 +68,11 @@ button:active {
     transform: scale(0.9);
 }
 
-/* Floating Hearts */
-.heart {
-    position: absolute;
-    color: white;
-    font-size: 20px;
-    animation: float 6s linear infinite;
-    opacity: 0.8;
-}
-
-@keyframes float {
-    0% {
-        transform: translateY(100vh);
-        opacity: 0;
-    }
-    50% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-10vh);
-        opacity: 0;
-    }
-}
-
-/* Result pages */
+/* Result screen */
 .result {
-    font-size: 20px;
+    text-align: center;
     color: white;
+    padding: 20px;
 }
 
 .result img {
